@@ -51,12 +51,12 @@ class App < Sinatra::Base
 
     if (aspect_x.nil? || aspect_y.nil? || x1.nil? || y1.nil? || crop_width.nil?) && !width.nil?
       width  = width
-      height = (FORCED_HEIGHT / FORCED_WIDTH.to_f) * width.to_i
+      height = ( (FORCED_HEIGHT / FORCED_WIDTH.to_f) * width.to_i ).to_i
     elsif width.nil?
       width, height = [FORCED_WIDTH, FORCED_HEIGHT]
     else
       width  = width
-      height = (aspect_x.to_i / aspect_y.to_f) * width.to_i
+      height = ( (aspect_x.to_i / aspect_y.to_f) * width.to_i ).to_i
     end
 
     generate_image(width, height)

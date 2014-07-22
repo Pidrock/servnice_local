@@ -66,7 +66,7 @@ class App < Sinatra::Base
     require_api_key
 
     random_uuid = SecureRandom.urlsafe_base64(16, false).gsub('-','a').gsub('_','b').downcase
-    {uuid: random_uuid, width: FORCED_WIDTH, height: FORCED_HEIGHT, type: "image/jpeg"}.to_json
+    {uuid: random_uuid, width: FORCED_WIDTH, height: FORCED_HEIGHT, mimetype: "image/jpeg"}.to_json
   end
 
   delete '/:domain/:uuid' do

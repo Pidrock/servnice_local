@@ -56,7 +56,7 @@ class App < Sinatra::Base
       width, height = [FORCED_WIDTH, FORCED_HEIGHT]
     else
       width  = width
-      height = ( (aspect_x.to_i / aspect_y.to_f) * width.to_i ).to_i
+      height = ( ( aspect_y.to_f / aspect_x.to_i) * width.to_i ).to_i
     end
 
     generate_image(width, height)

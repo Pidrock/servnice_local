@@ -46,17 +46,20 @@ class App < Sinatra::Base
   get '/:domain/:image*' do
     content_type "image/png"
 
-    image = params[:image].chomp(File.extname(params[:image]))
-    uuid, width, aspect_x, aspect_y, x1, y1, crop_width = image.split('-')
-
-    if (aspect_x.nil? || aspect_y.nil? || x1.nil? || y1.nil? || crop_width.nil?) && !width.nil?
-      width  = width
-      height = ( (FORCED_HEIGHT / FORCED_WIDTH.to_f) * width.to_i ).to_i
-    elsif width.nil?
-      width, height = [FORCED_WIDTH, FORCED_HEIGHT]
+    case params[:fit]
+    when 'crop'
+      if params[:w] && params[:h]
+        width  = params[:w]
+        height = params[:h]
+      elsif params[:w] && params[:h].nil?
+        width  = params[:w]
+        height = scale_x(FORCED_WIDTH, FORCED_HEIGHT, params[:w].to_i)
+      elsif params[:h] && params[:w].nil?
+        width  = scale_y(FORCED_WIDTH, FORCED_HEIGHT, params[:h].to_i)
+        height = params[:h]
+      end
     else
-      width  = width
-      height = ( ( aspect_y.to_f / aspect_x.to_i) * width.to_i ).to_i
+      width, height = [FORCED_WIDTH, FORCED_HEIGHT]
     end
 
     generate_image(params[:image], width, height)
@@ -86,6 +89,17 @@ class App < Sinatra::Base
   end
 
  private
+
+  def scale_x(aspect_x, aspect_y, wanted_width)
+    wanted_height = ((aspect_y / aspect_x.to_f) * wanted_width).round
+    wanted_height
+  end
+
+  def scale_y(aspect_x, aspect_y, wanted_height)
+    wanted_width = ((aspect_x / aspect_y.to_f) * wanted_height).round
+    wanted_width
+  end
+
   def require_api_key
     api_key = params[:api_key] || request.env['HTTP_API_KEY']
     raise NotAuthorized, 'API-key wrong or missing' if api_key.nil?

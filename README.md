@@ -1,12 +1,12 @@
-# ServniceLocal
+# ImgixLocal
 
-Run a local Servnice instance, so you can have scalable images available without being online.
+Run a local imgix instance, so you can have scalable images available without being online.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'servnice_local'
+    gem 'imgix_local'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install servnice_local
+    $ gem install imgix_local
 
 ## Requirements
 
@@ -31,18 +31,18 @@ If you are using something more exotic consult your documentation, or ping me.
 To start the server after installation you type:
 
 ```
-bundle exec servnice_server
+bundle exec imgix_server
 ```
 
 The server will listen on port `9384`, if you want to change that you can set the `PORT` environment-variable:
 
 ```
-PORT=4567 bundle exec servnice_server
+PORT=4567 bundle exec imgix_server
 ```
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/servnice_local/fork )
+1. Fork it ( https://github.com/[my-github-username]/imgix_local/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

@@ -15,11 +15,11 @@ class App < Sinatra::Base
   FORCED_HEIGHT = 1080
 
   configure :development do
-   # register Sinatra::Reloader
+    # register Sinatra::Reloader
 
-   # set :raise_errors,    false
-   # set :show_exceptions, false
-   # set :dump_errors,     false
+    # set :raise_errors,    false
+    # set :show_exceptions, false
+    # set :dump_errors,     false
   end
 
   get '/favicon.ico' do

@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'servnice_local/version'
+require 'imgix_local/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "servnice_local"
-  spec.version       = ServniceLocal::VERSION
+  spec.name          = "imgix_local"
+  spec.version       = ImgixLocal::VERSION
   spec.authors       = ["Kasper Grubbe"]
   spec.email         = ["kawsper@gmail.com"]
   spec.summary       = %q{Write a short summary. Required.}
@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = ["servnice_server"]
+  spec.executables   = ["imgix_server"]
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
